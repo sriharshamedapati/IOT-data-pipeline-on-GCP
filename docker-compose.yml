@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+      - ./db_init.sql:/docker-entrypoint-initdb.d/db_init.sql
+    ports:
+      - "3307:3306"
+
+  pubsub-emulator:
+    image: google/cloud-sdk:latest
+    container_name: pubsub-emulator
+    command: gcloud beta emulators pubsub start --host-port=0.0.0.0:8085
+    ports:
+      - "8085:8085"
+
+  consumer:
+    build: ./consumer
+    environment:
+      GCP_PROJECT_ID: local-project
+      PUBSUB_TOPIC_RAW: iot-sensor-data-raw
+      PUBSUB_EMULATOR_HOST: pubsub-emulator:8085
+      MYSQL_HOST: mysql-db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password123
+      MYSQL_DATABASE: iot_data
+    depends_on:
+      - mysql
+      - pubsub-emulator
