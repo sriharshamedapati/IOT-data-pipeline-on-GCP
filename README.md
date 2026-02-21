@@ -184,16 +184,6 @@ You should see inserted sensor records.
 
 ---
 
-## 📸 Demonstration
-
-Include screenshots showing:
-
-* Docker containers running
-* Consumer logs processing messages
-* MySQL query results displaying inserted records
-
----
-
 ## ✨ Key Features
 
 * Real-time message streaming
@@ -211,3 +201,4 @@ Include screenshots showing:
 * Automated unit/integration tests
 * Deployment to Google Cloud (Pub/Sub + Cloud SQL)
 * Observability and monitoring dashboard
+
