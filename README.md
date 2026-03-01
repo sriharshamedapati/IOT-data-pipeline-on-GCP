@@ -76,8 +76,8 @@ project-root/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone <your-repo-link>
-cd <project-folder>
+git clone https://github.com/sriharshamedapati/IOT-data-pipeline-on-GCP.git
+cd IOT-data-pipeline-on-GCP
 ```
 
 ---
@@ -201,4 +201,5 @@ You should see inserted sensor records.
 * Automated unit/integration tests
 * Deployment to Google Cloud (Pub/Sub + Cloud SQL)
 * Observability and monitoring dashboard
+
 
